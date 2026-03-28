@@ -5,7 +5,6 @@ apply(plugin = "kotlin-android")
 apply(plugin = "com.lagradost.cloudstream3.gradle")
 
 configure<CloudstreamExtension> {
-    name = "Yanhh3D"
-    pkg = "com.lagradost"
-    mainClass = "Yanhh3DProvider"
+    // Sử dụng hàm thay vì gán biến để tránh lỗi "Val cannot be reassigned"
+    setProject("Yanhh3D", "com.lagradost", "Yanhh3DProvider")
 }
