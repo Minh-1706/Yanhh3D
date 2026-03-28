@@ -15,13 +15,15 @@ apply(plugin = "com.android.library")
 apply(plugin = "kotlin-android")
 apply(plugin = "com.lagradost.cloudstream3.gradle")
 
-configure<CloudstreamExtension> {
-    setDisplayName(project.findProperty("moduleName") as String? ?: "Yanhh3D")
-    setPackageName(project.findProperty("moduleClassName") as String? ?: "com.yourname.Yanhh3DProvider")
-    setDescription(project.findProperty("description") as String? ?: "Cloudstream Provider")
+// Cách viết đơn giản hơn để tránh lỗi Unresolved reference
+extensions.configure<CloudstreamExtension> {
+    setDisplayName(project.findProperty("moduleName")?.toString() ?: "Yanhh3D")
+    setPackageName(project.findProperty("moduleClassName")?.toString() ?: "com.yourname.Yanhh3DProvider")
+    setDescription(project.findProperty("description")?.toString() ?: "Cloudstream Provider")
 }
 
 dependencies {
+    // Luôn dùng bản master-SNAPSHOT để đồng bộ với Plugin
     compileOnly("com.github.recloudstream:cloudstream:master-SNAPSHOT")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
 }
