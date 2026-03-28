@@ -4,7 +4,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("[https://jitpack.io](https://jitpack.io)") }
+        maven { url = uri("https://jitpack.io](https://jitpack.io") }
     }
     dependencies {
         classpath("com.github.recloudstream:gradle:master-SNAPSHOT")
