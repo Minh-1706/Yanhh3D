@@ -15,15 +15,15 @@ apply(plugin = "com.android.library")
 apply(plugin = "kotlin-android")
 apply(plugin = "com.lagradost.cloudstream3.gradle")
 
-// Sửa lỗi Unresolved reference bằng cách sử dụng cấu hình thông qua tên plugin
-configure<com.lagradost.cloudstream3.gradle.CloudstreamExtension> {
-    setDisplayName(project.findProperty("moduleName")?.toString() ?: "Yanhh3D")
-    setPackageName(project.findProperty("moduleClassName")?.toString() ?: "com.yourname.Yanhh3DProvider")
-    setDescription(project.findProperty("description")?.toString() ?: "Cloudstream Provider")
+// Sử dụng cách khai báo an toàn nhất cho Gradle 8.x
+configure<CloudstreamExtension> {
+    displayName = project.findProperty("moduleName")?.toString() ?: "Yanhh3D"
+    packageName = project.findProperty("moduleClassName")?.toString() ?: "com.yourname.Yanhh3DProvider"
+    description = project.findProperty("description")?.toString() ?: "Cloudstream Provider"
 }
 
 dependencies {
-    // Sử dụng chuỗi trực tiếp để tránh lỗi biến số
-    compileOnly("com.github.recloudstream:cloudstream:master-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
+    // Ép kiểu dependency để Gradle 8.x không bị nhầm lẫn
+    add("compileOnly", "com.github.recloudstream:cloudstream:master-SNAPSHOT")
+    add("implementation", "org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
 }
