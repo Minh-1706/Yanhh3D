@@ -15,15 +15,15 @@ apply(plugin = "com.android.library")
 apply(plugin = "kotlin-android")
 apply(plugin = "com.lagradost.cloudstream3.gradle")
 
-// Sử dụng hàm set() thay vì dấu bằng để tránh lỗi "Val cannot be reassigned"
+// Sử dụng block configure trực tiếp với tham số để đảm bảo nhận diện đúng hàm
 configure<CloudstreamExtension> {
-    setDisplayName(project.findProperty("moduleName")?.toString() ?: "Yanhh3D")
-    setPackageName(project.findProperty("moduleClassName")?.toString() ?: "com.yourname.Yanhh3DProvider")
-    setDescription(project.findProperty("description")?.toString() ?: "Cloudstream Provider")
+    this.displayName = project.findProperty("moduleName")?.toString() ?: "Yanhh3D"
+    this.packageName = project.findProperty("moduleClassName")?.toString() ?: "com.yourname.Yanhh3DProvider"
+    this.description = project.findProperty("description")?.toString() ?: "Cloudstream Provider"
 }
 
 dependencies {
-    // Sử dụng chuỗi trực tiếp để Gradle không bị nhầm lẫn về kiểu dữ liệu
+    // Sử dụng add để ép kiểu dependency cho Gradle 8.x
     add("compileOnly", "com.github.recloudstream:cloudstream:master-SNAPSHOT")
     add("implementation", "org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
 }
